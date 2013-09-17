@@ -1,0 +1,10 @@
+var mainCircle = "#333333" //coolgrey
+var points = "white"
+var center = "white"
+var centerCorrect = "#298400"
+var pointsBorder = "white"
+var pointsBackground = "transparent"
+var pointsBorderCorrect = "#298400"
+var pointsCorrect = "#298400"
+var pointsSelected = "#aea79f"
+var numbers = "white"

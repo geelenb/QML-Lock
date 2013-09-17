@@ -1,0 +1,8 @@
+[Desktop Entry]
+Name=Lock
+Comment=My project description
+Exec=/usr/bin/qmlscene $@ /usr/share/Lock/Lock.qml
+Icon=qmlscene
+Terminal=false
+Type=Application
+X-Ubuntu-Touch=true
