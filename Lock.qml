@@ -37,18 +37,21 @@ MainView {
         onCorrect: {
             console.log("Correct!")
             center.locked = false
+            currentCode = []
         }
 
         property var code: [-1, 1, 2, 3, 4, -1]
         property var currentCode: []
         property int maxnum: 12
-        property bool numbersVisible: true
+        property bool numbersVisible: false
 
         function addNumber (number) {
-            currentCode.push(number)
-            console.log(currentCode)
-            if (number !== -1)
-                repeater.itemAt(number).dot.color = Colors.pointsSelected
+            if (repeater.itemAt(0).bigR >= main.height / 3)  {
+                currentCode.push(number)
+                console.log(currentCode)
+                if (number !== -1)
+                    repeater.itemAt(number).dot.color = Colors.pointsSelected
+            }
         }
 
         function checkCorrect() {
