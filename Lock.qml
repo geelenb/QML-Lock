@@ -34,16 +34,17 @@ MainView {
         color: Colors.mainCircle
 
         signal correct
+        property bool hasBeenCorrect
         onCorrect: {
             console.log("Correct!")
-            center.locked = false
+            hasBeenCorrect = true
             currentCode = []
         }
 
         property var code: [-1, 1, 2, 3, 4, -1]
         property var currentCode: []
         property int maxnum: 12
-        property bool numbersVisible: false
+        property bool numbersVisible: true
 
         function addNumber (number) {
             if (repeater.itemAt(0).bigR >= main.height / 3)  {
@@ -116,10 +117,8 @@ MainView {
             color: Colors.center
             property int number: -1
 
-            property bool locked: true
-
             Image {
-                visible: center.locked
+                visible: !main.hasBeenCorrect
                 source: Qt.resolvedUrl("locked.png")
                 anchors.fill: parent
                 anchors.margins: parent.height / 5
@@ -127,7 +126,7 @@ MainView {
             }
 
             Image {
-                visible: !center.locked
+                visible: main.hasBeenCorrect
                 source: Qt.resolvedUrl("unlocked.png")
                 anchors.fill: parent
                 anchors.margins: parent.height / 5
@@ -150,7 +149,7 @@ MainView {
                property int number: index
                property alias dot: centerDot
 
-               property int bigR: mouseArea.pressed ?  main.height / 2.7 : 0
+               property int bigR: mouseArea.pressed || main.hasBeenCorrect ? main.height / 2.7 : 0
                property int offsetRadius: radius
                x: (main.width / 2) + bigR * Math.sin(2 * Math.PI * index / main.maxnum) - offsetRadius
                y: (main.height / 2) - bigR * Math.cos(2 * Math.PI * index / main.maxnum) - offsetRadius
@@ -180,11 +179,16 @@ MainView {
                color: Colors.numbers
                text: index
                visible: main.numbersVisible
+               opacity: mouseArea.pressed || main.hasBeenCorrect ? 1 : 0
 
                property int bigR: main.height / 3.5
                property int offsetRadius: height / 2
                x: (main.width / 2) + bigR * Math.sin(2 * Math.PI * index / main.maxnum) - height /4
                y: (main.height / 2) - bigR * Math.cos(2 * Math.PI * index / main.maxnum) - offsetRadius
+
+               Behavior on opacity {
+                   UbuntuNumberAnimation{}
+               }
            }
         }
     }
