@@ -1,4 +1,4 @@
-/*
+/* add a '/' before this line to enable my colors
 //My colors
 var mainCircle = "#333333" //coolgrey
 var points = "white"
