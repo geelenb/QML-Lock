@@ -11,4 +11,5 @@ You can play around with the colors in colors.js.
 I've already included two different color schemes.
 You can also play around with the settings at Lock.qml:43-46 .
 
+For more information, see http://guidopallemans.blogspot.be/2013/09/some-time-ago-i-saw-beautiful-lock.html
 For further implementation, you will probably need the signal correct on line 36.
